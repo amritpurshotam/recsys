@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    shm_size: "1g"
+    volumes:
+      - ./practicals:/app/practicals
+      - ./data:/app/data
+    ports:
+      - 8888:8888
